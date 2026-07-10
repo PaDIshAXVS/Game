@@ -83,7 +83,7 @@ class Skill(Base):
             else:
                 xp -= self.cur_xp 
                 self.level -= 1
-                self.next_level_xp = round(self.next_level_xp / 1.2)
+                self.next_level_xp = round(self.next_level_xp / 1.05)
                 self.cur_xp = self.next_level_xp
         
         session.commit()
@@ -108,7 +108,7 @@ class Skill(Base):
     def check_xp(self, session):
         while self.cur_xp >= self.next_level_xp:
             self.cur_xp -= self.next_level_xp
-            self.next_level_xp = round(self.next_level_xp * 1.2)
+            self.next_level_xp = round(self.next_level_xp * 1.05)
             self.level += 1
 
         session.commit()
